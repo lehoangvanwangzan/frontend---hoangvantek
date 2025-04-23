@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaReact } from 'react-icons/fa'
+import { FaFacebook } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi';
 import { VscSearchFuzzy } from 'react-icons/vsc';
 import { Divider, Badge, Drawer, Avatar, Popover, Empty, Button } from 'antd';
@@ -12,13 +12,14 @@ import { logoutAPI } from '@/services/api';
 import ManageAccount from '../client/account';
 import { isMobile } from 'react-device-detect';
 import { PhoneOutlined } from '@ant-design/icons';
+import { FaYoutube } from 'react-icons/fa6';
 
 interface IProps {
     searchTerm: string;
     setSearchTerm: (v: string) => void;
 }
 
-const AppHeader = (props: IProps) => {
+export const AppHeader = (props: IProps) => {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [openManageAccount, setOpenManageAccount] = useState<boolean>(false);
 
@@ -109,24 +110,81 @@ const AppHeader = (props: IProps) => {
                             setOpenDrawer(true)
                         }}>☰</div>
                         <div className='page-header__logo'>
-                            <span className='logo'>
-                                <span onClick={() => navigate('/')}> <FaReact className='rotate icon-react' />HOANG VAN TEK</span>
-
-                                <VscSearchFuzzy className='icon-search' />
+                            <img
+                                src="/hoangvantek.png"
+                                style={{
+                                    height: '60px',
+                                    width: '60px',
+                                    marginRight: '-10px',
+                                    marginTop: 5
+                                }}
+                            />
+                            <span className='logo-name' onClick={() => navigate('/')}>
+                                HOANG VAN TEK
                             </span>
                             <input
                                 className="input-search" type={'text'}
                                 placeholder="Bạn tìm gì hôm nay"
                                 value={props.searchTerm}
                                 onChange={(e) => props.setSearchTerm(e.target.value)}
+
                             />
+                            <span className='logo-name'>
+                                <VscSearchFuzzy className='icon-search' />
+                            </span>
 
                         </div>
-
                     </div>
                     <nav className="page-header__bottom">
                         <ul id="navigation" className="navigation">
-                            <li className="navigation__item">
+                            <li className="navigation__item mobile " >
+                                <Button
+                                    type="primary"
+                                    shape="round"
+                                    style={{
+                                        backgroundColor: '#ff4d4f',
+                                        borderColor: '#ff4d4f',
+                                        color: 'white'
+                                    }}
+                                    className='btn-phone'
+                                    onClick={() => window.open('tel:0917946024')}
+                                >
+                                    <PhoneOutlined />
+                                    <span className='phone'>0917946024</span>
+                                </Button>
+                            </li>
+                            <li className="navigation__item mobile"><Divider type='vertical' /></li>
+                            <li className="navigation__item mobile " >
+                                <Button
+                                    type="primary"
+                                    shape="round"
+                                    style={{
+                                        backgroundColor: '#4284f5',
+                                        borderColor: '#4284f5',
+                                        color: 'white'
+                                    }}
+                                    onClick={() => window.open('https://www.facebook.com/leewangzan')}
+                                >
+                                    <FaFacebook />
+                                </Button>
+                            </li>
+                            <li className="navigation__item mobile"><Divider type='vertical' /></li>
+                            <li className="navigation__item mobile " >
+                                <Button
+                                    type="primary"
+                                    shape="round"
+                                    style={{
+                                        backgroundColor: '#f54242',
+                                        borderColor: '#f54242',
+                                        color: 'white'
+                                    }}
+                                    onClick={() => window.open('https://www.youtube.com/channel/UC-dANBh4ITN_6eRyDRRSLZw')}
+                                >
+                                    <FaYoutube />
+                                </Button>
+                            </li>
+                            <li className="navigation__item mobile"><Divider type='vertical' /></li>
+                            <li className="navigation__item ">
                                 {!isMobile
                                     ?
                                     <Popover
@@ -194,5 +252,3 @@ const AppHeader = (props: IProps) => {
         </>
     )
 };
-
-export default AppHeader;
