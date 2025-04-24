@@ -19,7 +19,7 @@ const AdminDashboard = () => {
         initDashboard();
     }, []);
 
-    const formatter = (value: any) => <CountUp end={value} separator="," />;
+    const formatter = (value: any) => <CountUp end={value} />;
     return (
         <Row gutter={[40, 40]}>
             <Col span={8}>
