@@ -1,7 +1,8 @@
 import { getDashboardAPI } from "@/services/api";
 import { Card, Col, Row, Statistic } from "antd";
 import { useEffect, useState } from "react";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
+
 
 const AdminDashboard = () => {
     const [dataDashboard, setDataDashboard] = useState({
