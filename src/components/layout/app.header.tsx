@@ -168,7 +168,7 @@ export const AppHeader = (props: IProps) => {
                                     <FaFacebook />
                                 </Button>
                             </li>
-                            <li className="navigation__item mobile"><Divider type='vertical' /></li>
+
                             <li className="navigation__item mobile " >
                                 <Button
                                     type="primary"
