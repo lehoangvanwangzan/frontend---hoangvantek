@@ -1,4 +1,24 @@
 .header-container {
+    .category-bar {
+
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        background-color: #ffff;
+        border-bottom: 1px solid #e8e8e8;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    }
+
     .page-header {
         display: flex;
         user-select: none;

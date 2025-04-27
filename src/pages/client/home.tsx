@@ -20,6 +20,24 @@ type FieldType = {
 
 
 const HomePage = () => {
+
+    const listCategory_fix = [
+        { label: "Sách giáo khoa", value: "sach-giao-khoa" },
+        { label: "Sách tham khảo", value: "sach-tham-khao" },
+        { label: "Sách văn học", value: "sach-van-hoc" },
+        { label: "Sách thiếu nhi", value: "sach-thieu-nhi" },
+        { label: "Sách kỹ năng sống", value: "sach-ky-nang-song" },
+        { label: "Sách kinh tế", value: "sach-kinh-te" },
+        { label: "Sách ngoại ngữ", value: "sach-ngoai-ngu" },
+        { label: "Sách lịch sử", value: "sach-lich-su" },
+        { label: "Sách địa lý", value: "sach-dia-ly" },
+        { label: "Sách khoa học", value: "sach-khoa-hoc" },
+        { label: "Sách tôn giáo", value: "sach-ton-giao" },
+        { label: "Sách văn hóa", value: "sach-van-hoa" },
+        { label: "Sách nghệ thuật", value: "sach-nghe-thuat" },
+        { label: "Sách tâm lý", value: "sach-tam-ly" },
+        { label: "Sách triết học", value: "sach-triet-hoc" },
+    ];
     const [searchTerm] = useOutletContext() as any;
 
     const [listCategory, setListCategory] = useState<{
@@ -173,10 +191,11 @@ const HomePage = () => {
                                         name="category"
                                         label="Danh mục sản phẩm"
                                         labelCol={{ span: 24 }}
+
                                     >
                                         <Checkbox.Group>
                                             <Row>
-                                                {listCategory?.map((item, index) => {
+                                                {listCategory_fix?.map((item, index) => {
                                                     return (
                                                         <Col span={24} key={`index-${index}`} style={{ padding: '7px 0' }}>
                                                             <Checkbox value={item.value} >
@@ -187,7 +206,9 @@ const HomePage = () => {
                                                 })}
                                             </Row>
                                         </Checkbox.Group>
+
                                     </Form.Item>
+
                                     <Divider />
                                     <Form.Item
                                         label="Khoảng giá"

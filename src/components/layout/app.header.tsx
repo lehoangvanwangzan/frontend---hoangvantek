@@ -2,17 +2,20 @@ import { useState } from 'react';
 import { FaFacebook } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi';
 import { VscSearchFuzzy } from 'react-icons/vsc';
-import { Divider, Badge, Drawer, Avatar, Popover, Empty, Button } from 'antd';
+import { Divider, Badge, Drawer, Avatar, Popover, Empty, Button, Menu } from 'antd';
 import { Dropdown, Space } from 'antd';
-import { useNavigate } from 'react-router';
+import { Router, useNavigate } from 'react-router';
 import './app.header.scss';
 import { Link } from 'react-router-dom';
 import { useCurrentApp } from 'components/context/app.context';
 import { logoutAPI } from '@/services/api';
 import ManageAccount from '../client/account';
 import { isMobile } from 'react-device-detect';
-import { PhoneOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, HomeOutlined, MailOutlined, PhoneOutlined, SettingOutlined, WifiOutlined } from '@ant-design/icons';
 import { FaYoutube } from 'react-icons/fa6';
+import { MenuProps } from 'antd/lib';
+import { icons } from 'antd/es/image/PreviewGroup';
+import { TbSmartHome } from 'react-icons/tb';
 
 interface IProps {
     searchTerm: string;
@@ -100,7 +103,202 @@ export const AppHeader = (props: IProps) => {
             </div>
         )
     }
+    let listCategory_product = [
 
+        {
+            label: 'Bộ phát WIFI',
+            key: 'wifi',
+            icon: <WifiOutlined />,
+            children: [
+                {
+                    label: <Link to="/wifi/1">Wifi Ubiquiti</Link>,
+                    key: 'item1',
+                },
+                {
+                    label: <Link to="/wifi/2">Wifi Aruba</Link>,
+                    key: 'item2',
+                },
+                {
+                    label: <Link to="/wifi/3">WiFi Everest</Link>,
+                    key: 'item3',
+                },
+                {
+                    label: <Link to="/wifi/4">Wifi UniFi</Link>,
+                    key: 'item4',
+                },
+                {
+                    label: <Link to="/wifi/5">Wifi TP-Link</Link>,
+                    key: 'item5',
+                },
+                {
+                    label: <Link to="/wifi/6">Wifi Mikrotik</Link>,
+                    key: 'item6',
+                },
+                {
+                    label: <Link to="/wifi/7">Wifi Meraki</Link>,
+                    key: 'item7',
+                },
+                {
+                    label: <Link to="/wifi/8">Wifi Tenda</Link>,
+                    key: 'item8',
+                },
+                {
+                    label: <Link to="/wifi/9">Wifi Totolink</Link>,
+                    key: 'item9',
+                }
+            ],
+
+        },
+        {
+            label: 'Thiết bị cân bằng tải',
+            key: 'loadbalancer',
+            icon: <WifiOutlined />,
+            children: [
+                {
+                    label: <Link to="/loadbalancer/1">Router MikroTik</Link>,
+                    key: 'item11',
+                },
+                {
+                    label: <Link to="/loadbalancer/2">Router TP-Link</Link>,
+                    key: 'item12',
+                },
+                {
+                    label: <Link to="/loadbalancer/3">Router Cisco</Link>,
+                    key: 'item13',
+                },
+                {
+                    label: <Link to="/loadbalancer/4">Router Fortinet</Link>,
+                    key: 'item14',
+                },
+                {
+                    label: <Link to="/loadbalancer/5">Router D-Link</Link>,
+                    key: 'item15',
+                },
+
+            ],
+
+        },
+        {
+            label: 'Bộ chuyển mạch Switch',
+            key: 'switch',
+            icon: <WifiOutlined />,
+            children: [
+                {
+                    label: <Link to="/switch/1">Switch TP-Link</Link>,
+                    key: 'item21',
+                },
+                {
+                    label: <Link to="/switch/2">Switch Cisco</Link>,
+                    key: 'item22',
+                },
+                {
+                    label: <Link to="/switch/3">Switch D-Link</Link>,
+                    key: 'item23',
+                },
+                {
+                    label: <Link to="/switch/4">Switch Netgear</Link>,
+                    key: 'item24',
+                },
+                {
+                    label: <Link to="/switch/5">Switch MikroTik</Link>,
+                    key: 'item25',
+                },
+
+            ],
+
+        },
+        {
+            label: 'Thiết bị tường lửa Firewall',
+            key: 'firewall',
+            icon: <WifiOutlined />,
+            children: [
+                {
+                    label: <Link to="/firewall/1">Firewall Fortinet</Link>,
+                    key: 'item31',
+                },
+                {
+                    label: <Link to="/firewall/2">Firewall Cisco</Link>,
+                    key: 'item32',
+                },
+                {
+                    label: <Link to="/firewall/3">Firewall Palo Alto</Link>,
+                    key: 'item33',
+                },
+                {
+                    label: <Link to="/firewall/4">Firewall Sophos</Link>,
+                    key: 'item34',
+                },
+                {
+                    label: <Link to="/firewall/5">Firewall SonicWall</Link>,
+                    key: 'item35',
+                },
+            ],
+
+        },
+        {
+            label: 'Thiết bị smart home',
+            key: 'smarthome',
+            icon: <HomeOutlined />,
+            children: [
+                {
+                    label: <Link to="/smarthome/1">Smart Home TP-Link</Link>,
+                    key: 'item41',
+                },
+                {
+                    label: <Link to="/smarthome/2">Smart Home Xiaomi</Link>,
+                    key: 'item42',
+                },
+                {
+                    label: <Link to="/smarthome/3">Smart Home Philips</Link>,
+                    key: 'item43',
+                },
+                {
+                    label: <Link to="/smarthome/4">Smart Home Google Nest</Link>,
+                    key: 'item44',
+                },
+                {
+                    label: <Link to="/smarthome/5">Smart Home Amazon Echo</Link>,
+                    key: 'item45',
+                },
+            ],
+
+        },
+        {
+            label: 'Linh kiện PC',
+            key: 'pc',
+            icon: <AppstoreOutlined />,
+            children: [
+                {
+                    label: <Link to="/pc/1">Mainboard</Link>,
+                    key: 'item51',
+                },
+                {
+                    label: <Link to="/pc/2">CPU</Link>,
+                    key: 'item52',
+                },
+                {
+                    label: <Link to="/pc/3">RAM</Link>,
+                    key: 'item53',
+                },
+                {
+                    label: <Link to="/pc/4">VGA</Link>,
+                    key: 'item54',
+                },
+                {
+                    label: <Link to="/pc/5">SSD</Link>,
+                    key: 'item55',
+                },
+                {
+                    label: <Link to="/pc/6">HDD</Link>,
+                    key: 'item56',
+                },
+            ],
+        }
+
+    ];
+    const onClick: MenuProps['onClick'] = (e) => {
+        console.log('click', e);
+    };
     return (
         <>
             <div className='header-container'>
@@ -135,6 +333,7 @@ export const AppHeader = (props: IProps) => {
 
                         </div>
                     </div>
+
                     <nav className="page-header__bottom">
                         <ul id="navigation" className="navigation">
                             <li className="navigation__item mobile " >
@@ -230,6 +429,16 @@ export const AppHeader = (props: IProps) => {
                         </ul>
                     </nav>
                 </header>
+                <div className='page-header'>
+                    <Menu
+                        inlineIndent={24}
+                        className='category-bar'
+                        mode="horizontal"
+                        items={listCategory_product}
+                        onClick={onClick}
+                    />
+                </div>
+
             </div>
             <Drawer
                 title="Menu chức năng"
